@@ -1,73 +1,83 @@
-#Messy Cafe Data Analysis & Exploratory Data Analysis (EDA) Using SQL
+# Messy Cafe Data Analysis & Exploratory Data Analysis (EDA) Using SQL
 
-#Project Overview:
+## Project Overview
 
-This project analyzes one year of cafe transaction data (January 2023 – December 2023) using MySQL. The dataset contained inconsistencies, missing values, and formatting issues that required extensive cleaning before analysis. After preprocessing the data, SQL-based exploratory data analysis was conducted to uncover customer purchasing patterns, identify revenue-generating products, evaluate payment preferences, and assess location-wise business performance.
-The project demonstrates practical SQL skills including data cleaning, aggregation, subqueries, window functions, and business-oriented analysis.
+This project analyzes one year of cafe transaction data (January 2023 – December 2023) using MySQL. The dataset contained missing values, inconsistencies, and formatting issues that required extensive data cleaning before analysis.
 
-#Business Problem:
+After preprocessing, SQL-based exploratory data analysis (EDA) was performed to uncover customer purchasing patterns, identify top-performing products, evaluate payment preferences, and analyze location-wise business performance.
 
-Cafe businesses generate large volumes of transaction data daily. However, raw transactional data often contains inconsistencies and missing information that can hinder decision-making.
-This project aims to clean and analyze sales data to answer key business questions and provide insights that can help improve operational efficiency, customer experience, and revenue generation.
+### Skills Demonstrated
 
-#Objectives:
-
-1. Understand the structure and quality of the dataset.
-2. Clean and preprocess raw transactional data.
-3. Perform exploratory data analysis using SQL.
-4. Identify sales trends and customer preferences.
-5. Generate actionable business insights and recommendations.
-
-#Dataset Information:
-
-1. Dataset Name: Messy Cafe Data
-2. Source: Kaggle
-3. Dataset Description: The dataset contains transaction-level sales data from a cafe covering the period from January 2023 to December 2023. Each record represents an individual transaction and includes information about purchased items, quantity, spending amount, payment method, and transaction location.
-
-#Dataset Schema:
-
-Column Name           
-1. Transaction ID      
-2. Item               
-3. Quantity            
-4. Price Per Unit      
-5. Total Spent         
-6. Payment Method      
-7. Location            
-8. Transaction Date    
+* Data Cleaning
+* Data Validation
+* Aggregate Functions
+* Subqueries
+* Window Functions
+* Business Analysis
 
 
-#Tools & Technologies:
+## Business Problem
 
-1. MySQL
-2. SQL
-3. Git
-4. GitHub
-5. Data Cleaning
-6. Exploratory Data Analysis (EDA)
+Cafe businesses generate large volumes of transaction data daily, but poor data quality can limit meaningful analysis and decision-making.
+
+This project aims to clean and analyze sales data to answer key business questions and generate actionable insights that can support revenue growth, customer satisfaction, and operational improvements.
 
 
-#Data Cleaning Process:
+## Dataset Information
 
-The raw dataset contained several data quality issues that required preprocessing before analysis.
-1. Cleaning Tasks Performed
-2. Removed duplicate records.
-3. Handled missing values.
-4. Standardized text formatting.
-5. Validated data consistency.
-6. Corrected invalid and inconsistent entries.
-7. Ensured appropriate data types for analysis.
-   
-#SQL Concepts Used:
+**Dataset:** Messy Cafe Data
 
-1. UPDATE Statements
-2. Aggregate Functions
-3. Window Functions
-4. Data Validation Techniques
+**Source:** Kaggle
 
-#Business Questions:
+### Dataset Description
+
+The dataset contains transaction-level sales records from January 2023 to December 2023. Each row represents a customer transaction and includes information about purchased items, quantity, spending amount, payment method, and transaction location.
+
+### Dataset Schema
+
+| Column Name      | Description                   |
+| ---------------- | ----------------------------- |
+| Transaction ID   | Unique transaction identifier |
+| Item             | Product purchased             |
+| Quantity         | Number of items purchased     |
+| Price Per Unit   | Cost per item                 |
+| Total Spent      | Total transaction value       |
+| Payment Method   | Payment mode used             |
+| Location         | Transaction location          |
+| Transaction Date | Date of transaction           |
+
+
+## Tools & Technologies
+
+* MySQL
+* SQL
+* Git
+* GitHub
+
+
+## Data Cleaning
+
+The raw dataset contained several data quality issues that were resolved before analysis:
+
+* Removed duplicate records
+* Handled missing values
+* Standardized text formatting
+* Corrected inconsistent entries
+* Validated data consistency
+* Ensured appropriate data types
+
+### SQL Concepts Used
+
+* UPDATE Statements
+* Aggregate Functions
+* Window Functions
+* Data Validation Techniques
+
+
+## Business Questions
 
 The analysis was conducted to answer the following questions:
+
 1. Which product generates the highest revenue?
 2. Which item is sold most frequently?
 3. What is the most preferred payment method?
@@ -75,55 +85,66 @@ The analysis was conducted to answer the following questions:
 5. Which location generates the highest revenue?
 6. How many transactions exceed the average transaction value?
 
-#Exploratory Data Analysis:
 
-SQL Skills Demonstrated
-1. Data Cleaning
-2. GROUP BY Analysis
-3. Aggregate Functions
-4. Subqueries
-5. Window Functions
-6. Data Validation
+## Exploratory Data Analysis
 
-#Key SQL Queries:
+### SQL Skills Demonstrated
 
-1. Most Revenue-Generating Product
-  SELECT Item,
-         SUM(`Total Spent`) AS Revenue
-  FROM cafe_sales_staging2
-  GROUP BY Item
-  ORDER BY Revenue DESC;
+* Data Cleaning
+* GROUP BY Analysis
+* Aggregate Functions
+* Subqueries
+* Window Functions
+* Data Validation
 
-2. Transactions Above Average Spending
-  SELECT COUNT(*)
-  FROM cafe_sales_staging2
-  WHERE `Total Spent` >
-  (
-      SELECT AVG(`Total Spent`)
-      FROM cafe_sales_staging2
-  );
 
-#Key Findings:
+## Key SQL Queries
 
-1. Salad generated the highest overall revenue among all menu items.
-2. Coffee was the most frequently purchased item based on quantity sold.
-3. Digital Wallet was the most preferred payment method across transactions.
-4. The average customer spending per transaction was approximately $8.91.
-5. In-store transactions generated the highest revenue compared to other locations.
-6. Out of 8,485 transactions, 3,683 transactions exceeded the average transaction value.
+### Most Revenue-Generating Product
 
-#Business Recommendations:
+```sql
+SELECT Item,
+       SUM(`Total Spent`) AS Revenue
+FROM cafe_sales_staging2
+GROUP BY Item
+ORDER BY Revenue DESC;
+```
 
-Based on the analysis:
-1. Continue promoting high-performing products such as Salad to maximize revenue.
-2. Maintain consistent product quality for top-selling items like Coffee and Salad.
-3. Expand and encourage Digital Wallet payment options to improve customer convenience.
-4. Strengthen customer engagement within physical store locations, as they contribute the highest revenue.
-5. Develop strategies to increase takeaway and online order sales through marketing campaigns and partnerships with food delivery platforms.
-6. Monitor customer purchasing patterns regularly to identify opportunities for menu optimization and targeted promotions.
+### Transactions Above Average Spending
 
-#Project Structure:
+```sql
+SELECT COUNT(*)
+FROM cafe_sales_staging2
+WHERE `Total Spent` >
+(
+    SELECT AVG(`Total Spent`)
+    FROM cafe_sales_staging2
+);
+```
 
+
+## Key Findings
+
+* Salad generated the highest revenue among all menu items.
+* Coffee was the most frequently purchased item based on quantity sold.
+* Digital Wallet was the most preferred payment method.
+* The average customer spending per transaction was approximately **$8.91**.
+* In-store transactions generated the highest revenue.
+* Out of **8,485 transactions**, **3,683 transactions** exceeded the average transaction value.
+
+## Business Recommendations
+
+* Continue promoting high-performing products such as Salad.
+* Maintain consistent quality for top-selling items like Coffee and Salad.
+* Expand and encourage Digital Wallet payment options.
+* Strengthen customer engagement within physical store locations.
+* Increase takeaway and online order sales through targeted marketing and food delivery partnerships.
+* Monitor purchasing patterns regularly to optimize menu offerings and promotions.
+
+
+## Project Structure
+
+```text
 Messy-Cafe-SQL-Analysis/
 │
 ├── dataset/
@@ -136,20 +157,22 @@ Messy-Cafe-SQL-Analysis/
 │   └── Clean Cafe Data.csv
 │
 └── README.md
+```
 
-#How to Run:
 
-1. Download the messy dataset from the repository
+## How to Run
+
+1. Download the dataset from the repository.
 2. Import the dataset into MySQL.
 3. Execute the SQL script containing data cleaning and EDA queries.
-4. Review query outputs and insights.
+4. Review the query outputs and findings.
 5. Modify queries to explore additional business questions.
 
-#Business Impact:
 
-This analysis provides valuable insights into customer purchasing behavior, product performance, and payment preferences. The findings can support data-driven decision-making related to inventory management, payment infrastructure, marketing strategies, and revenue optimization.
+## Author
 
-Author: Ayra Shaikh
+**Ayra Shaikh**
+
 GitHub: https://github.com/sinceayra
-LinkedIn: https://www.linkedin.com/in/ira-s/
 
+LinkedIn: https://www.linkedin.com/in/ira-s/
